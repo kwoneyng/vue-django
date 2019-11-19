@@ -1,15 +1,15 @@
 import Vue from 'vue'
-import BootstrapVue from 'bootstrap-vue'
 import App from './App.vue'
-import router from './router' // 폴더만 지정해 놓으면 폴더 안에 있는 index.js를 가져온다
+import router from './router'
+// 만약 폴더만 지정해놓고 어떤 파일인지 등록하지 않았으면 폴더 안의 index.js파일을 찾아감
+import BootstrapVue from 'bootstrap-vue'
+import VueSession from 'vue-session'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
-
-
 Vue.use(BootstrapVue)
+Vue.use(VueSession)  // 앞으로 Vue에서 Vuesession 사용할 수 있음
 Vue.config.productionTip = false
-
 new Vue({
-  router,
-  render: h => h(App)
+ router,
+ render: h => h(App)
 }).$mount('#app')

@@ -1,14 +1,40 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/login">Login</router-link>
+      <div v-if="isLoggedIn">
+        <router-link to="/">Home</router-link> 
+        <a @click="logout" href="/logout">Logout</a>
+      </div>
+      <div v-else>
+        <router-link to="/login">Login</router-link>
+      </div>
     </div>
   <div class="container col-6">
         <router-view/>
     </div>
   </div>
 </template>
+<script>
+import router from '@/router'
+
+export default {
+  name:'App',
+  data(){
+    return {
+      // 사용자의 로그인 상태 값, jwt 가 있으면 true!
+      isLoggedIn: this.$session.has('jwt')
+    }
+  },
+  methods:{
+    logout(){
+      this.$session.destroy()
+    }
+  },
+  updated(){
+    this.isLoggedIn = this.$$session.has('jwt')  
+  }
+}
+</script>
 
 <style>
 #app {
