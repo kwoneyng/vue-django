@@ -56,11 +56,13 @@ export default {
               // 응답결과를 세션에 저장하겠다.
               this.$session.set('jwt', response.data.token)
 
+              // vuex store 를 this.$store로 접근가능
+              this.$store.dispatch('login', response.data.token)
+
               this.loading = false
 
               // vue router를 통해 특정 페이지로 이동
               router.push('/')
-
             })
             .catch(error=>{
               console.error(error)
